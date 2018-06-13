@@ -2,10 +2,15 @@ applications:
 - name: tracker-timesheets
   path: ./applications/timesheets-server/build/libs/timesheets-server.jar
   routes:
-  - route: timesheets-pal-INITIALS.apps.chicken.pal.pivotal.io
+  - route: timesheets-pal-nw.apps.evans.pal.pivotal.io
   memory: 1G
   instances: 1
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://FILL_ME_IN
+    GRANT_TYPE: client_credentials
   services:
-  - tracker-timesheets-database
+  - tracker-timesheets-db
+  - tracker-service-registry
+  - tracker-circuit-breaker-dashboard
+  - tracker-sso
+  - tracker-config-server
+

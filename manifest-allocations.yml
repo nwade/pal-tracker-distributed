@@ -2,10 +2,14 @@ applications:
 - name: tracker-allocations
   path: ./applications/allocations-server/build/libs/allocations-server.jar
   routes:
-  - route: allocations-pal-INITIALS.apps.chicken.pal.pivotal.io
+  - route: allocations-pal-nw.apps.evans.pal.pivotal.io
   memory: 1G
   instances: 1
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://FILL_ME_IN
+    GRANT_TYPE: client_credentials
   services:
-  - tracker-allocations-database
+  - tracker-allocations-db
+  - tracker-service-registry
+  - tracker-circuit-breaker-dashboard
+  - tracker-sso
+  - tracker-config-server
